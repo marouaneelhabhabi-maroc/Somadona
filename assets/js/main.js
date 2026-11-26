@@ -117,12 +117,14 @@
         io.unobserve(el);
       });
     }, { rootMargin: "0px 0px -8% 0px", threshold: 0.08 });
-    Array.prototype.forEach.call(revealEls, function (el) {
-      // Seuls les éléments situés sous la ligne de flottaison sont masqués : aucun scintillement.
-      if (el.getBoundingClientRect().top > vh) {
-        el.classList.add("reveal-pending");
-        io.observe(el);
-      }
+    // Seuls les éléments situés sous la ligne de flottaison sont masqués : aucun scintillement.
+    // Lectures groupées puis écritures groupées, pour éviter les recalculs de mise en page en cascade.
+    var below = Array.prototype.filter.call(revealEls, function (el) {
+      return el.getBoundingClientRect().top > vh;
+    });
+    below.forEach(function (el) {
+      el.classList.add("reveal-pending");
+      io.observe(el);
     });
   }
 
