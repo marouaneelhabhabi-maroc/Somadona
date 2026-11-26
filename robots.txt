@@ -1,0 +1,7 @@
+# Maquette de démonstration proposée par Marouane Studio — site non officiel.
+# L'exploration n'est volontairement PAS bloquée ici : les robots doivent pouvoir
+# lire la directive <meta name="robots" content="noindex, nofollow, noarchive">
+# présente sur chaque page (et l'en-tête X-Robots-Tag lorsque l'hébergeur le permet).
+# Aucun sitemap XML n'est déclaré.
+User-agent: *
+Allow: /
